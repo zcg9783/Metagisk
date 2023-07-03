@@ -15,6 +15,7 @@ mod payload;
 mod proto;
 mod ramdisk;
 mod sha;
+mod bootimg;
 
 #[cxx::bridge]
 pub mod ffi {

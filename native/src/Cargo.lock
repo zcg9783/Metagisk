@@ -269,6 +269,7 @@ dependencies = [
  "cxx",
  "cxx-gen",
  "digest",
+ "paste",
  "pb-rs",
  "quick-protobuf",
  "sha1",
@@ -338,6 +339,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "paste"
+version = "0.1.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "45ca20c77d80be666aef2b45486da86238fabe33e38306bd3118fe4af33fa880"
+dependencies = [
+ "paste-impl",
+ "proc-macro-hack",
+]
+
+[[package]]
+name = "paste-impl"
+version = "0.1.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d95a7db200b97ef370c8e6de0088252f7e0dfff7d047a28528e47456c0fc98b6"
+dependencies = [
+ "proc-macro-hack",
+]
+
+[[package]]
 name = "pb-rs"
 version = "0.10.0"
 source = "git+https://github.com/tafia/quick-protobuf.git?rev=2f37d5a65504de7d716b5b28fd82219501a901a9#2f37d5a65504de7d716b5b28fd82219501a901a9"
@@ -347,6 +367,12 @@ dependencies = [
  "log",
  "nom",
 ]
+
+[[package]]
+name = "proc-macro-hack"
+version = "0.5.20+deprecated"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc375e1527247fe1a97d8b7156678dfe7c1af2fc075c9a4db3690ecd2a148068"
 
 [[package]]
 name = "proc-macro2"
