@@ -21,6 +21,18 @@ runs:
         restore-keys: ${{ runner.os }}
         max-size: 10000M
 
+    - name: Set up mold (Linux)
+      uses: rui314/setup-mold@v1
+      if: runner.os == 'Linux'
+      with:
+        make-default: false
+    - name: Set up mold (macOS)
+      shell: bash
+      if: runner.os == 'macOS'
+      run: |
+        brew update
+        brew install mold
+
     - name: Cache Gradle dependencies
       uses: actions/cache@v4
       with:

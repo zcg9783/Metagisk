@@ -361,6 +361,8 @@ def build_native():
         os.environ["CARGO_INCREMENTAL"] = "0"
     if ccache := shutil.which("ccache"):
         os.environ["NDK_CCACHE"] = ccache
+    if mold := shutil.which("mold"):
+        os.environ["NDK_MOLD"] = mold
 
     build_rust_src(targets)
     build_cpp_src(targets)

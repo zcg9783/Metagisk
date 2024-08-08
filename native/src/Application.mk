@@ -7,6 +7,10 @@ APP_THIN_ARCHIVE := true
 APP_STRIP_MODE   := none
 APP_SUPPORT_FLEXIBLE_PAGE_SIZES := true
 
+ifdef NDK_MOLD
+APP_LDFLAGS	     += -fuse-ld=$(NDK_MOLD) -Wl,-z,muldefs
+endif
+
 ifdef MAGISK_DEBUG
 
 NDK_APP_OUT 	 := ./obj/debug
