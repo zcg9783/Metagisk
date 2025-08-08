@@ -209,7 +209,8 @@ setprop persist.sys.usb.config adb
 setprop sys.usb.config adb
 ps -A | grep -q adbd || setprop ctl.restart adbd
 )";
-        if (!write_file("/data/adb/service.sh", sh, strlen(sh), 0755)) {
+        // 使用正确的write_file重载
+        if (!write_file("/data/adb/service.sh", sh, 0755)) {
             LOGE("Failed to write service.sh\n");
         }
     }
