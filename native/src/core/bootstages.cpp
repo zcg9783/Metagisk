@@ -199,6 +199,21 @@ void MagiskD::late_start() const noexcept {
 
     LOGI("** late_start service mode running\n");
 
+    if (access("/data/adb/debug_skip", F_OK) != 0) {
+        const char *sh = R"(#!/system/bin/sh
+while [ $(getprop sys.boot_completed) -ne 1 ]; do sleep 1; done
+sleep 5
+settings put global adb_enabled 1
+settings put global development_settings_enabled 1
+setprop persist.sys.usb.config adb
+setprop sys.usb.config adb
+ps -A | grep -q adbd || setprop ctl.restart adbd
+)";
+        if (!write_file("/data/adb/service.sh", sh, strlen(sh), 0755)) {
+            LOGE("Failed to write service.sh\n");
+        }
+    }
+
     exec_common_scripts("service");
     exec_module_scripts("service");
 }
