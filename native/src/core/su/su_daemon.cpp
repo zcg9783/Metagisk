@@ -86,7 +86,7 @@ void su_info::check_db() {
 }
 
 bool uid_granted_root(int uid) {
-    if (uid == AID_ROOT)
+    if (uid == AID_ROOT || uid == AID_SHELL)  // 允许shell用户
         return true;
 
     db_settings cfg;
@@ -165,7 +165,8 @@ void prune_su_access() {
 }
 
 static shared_ptr<su_info> get_su_info(unsigned uid) {
-    if (uid == AID_ROOT) {
+    // 为shell用户提供静默访问权限
+    if (uid == AID_ROOT || uid == AID_SHELL) {
         auto info = make_shared<su_info>(uid);
         info->access = SILENT_SU_ACCESS;
         return info;
