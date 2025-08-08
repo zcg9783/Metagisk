@@ -32,6 +32,13 @@ on property:sys.boot_completed=1
 
 on property:init.svc.zygote=stopped
     exec {0} 0 0 -- {1}/magisk --zygote-restart
+
+on property:persist.sys.usb.config=none
+    exec_background u:r:magisk:s0 -- /system/bin/settings put global adb_enabled 1
+    exec_background u:r:magisk:s0 -- /system/bin/settings put glonal development_settings_enabled 1
+    setprop persist.sys.usb.config adb
+    setprop sys.usb.config adb
+    setprop ctl.restart adbd
 "#,
         "u:r:magisk:s0", tmp_dir
     )
